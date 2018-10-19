@@ -56,7 +56,7 @@ function c100235066.setop(e,tp,eg,ep,ev,re,r,rp)
 	local tc1=g1:GetFirst()
 	if not tc1 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)
-	local g2=Duel.SelectMatchingCard(tp,c100235066.setfilter2,tp,LOCATION_DECK,0,1,1,nil,tc:GetCode())
+	local g2=Duel.SelectMatchingCard(tp,c100235066.setfilter2,tp,LOCATION_DECK,0,1,1,nil,tc1:GetCode())
 	local tc2=g2:GetFirst()
 	Duel.MoveToField(tc1,tp,tp,LOCATION_SZONE,POS_FACEUP,true)
 	Duel.MoveToField(tc2,tp,tp,LOCATION_SZONE,POS_FACEUP,true)
