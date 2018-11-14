@@ -35,7 +35,7 @@ function c100235096.effcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK)
 end
 function c100235096.thfilter(c)
-	return c:IsSetCard(0x108) and c:IsType(TYPE_MONSTER) and c:IsAbleToHand()
+	return c:IsSetCard(0x108) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsAbleToHand()
 end
 function c100235096.spfilter(c,e,tp)
 	return c:IsSetCard(0x108) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
@@ -67,11 +67,10 @@ function c100235096.effop(e,tp,eg,ep,ev,re,r,rp)
 			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 			local sg=g:Select(tp,1,1,nil)
 			local tc=sg:GetFirst()
-			sg:AddCard(tc)
+			Duel.SendtoHand(sg,nil,REASON_EFFECT)
 			g:Remove(Card.IsCode,nil,tc:GetCode())
 			ct=ct-1
-		until ct<=0 or g:GetCount()==0 or not Duel.SelectYesNo(tp,aux.Stringid(100235096,2))
-		Duel.SendtoHand(sg,nil,REASON_EFFECT)
+		until ct<=0 or g:GetCount()==0 or not Duel.SelectYesNo(tp,aux.Stringid(100235096,2))	
 		Duel.ConfirmCards(1-tp,sg)
 	else
 		local ft=Duel.GetLocationCount(tp,LOCATION_MZONE)
